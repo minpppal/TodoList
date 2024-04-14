@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import { IoMdSearch } from "react-icons/io";
 const MainTitle = () => {
