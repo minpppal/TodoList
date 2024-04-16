@@ -3,7 +3,7 @@ import React from "react";
 import Star from "./Star";
 const Todo = () => {
   return (
-    <div className="w-full h-[65px] flex items-center bg-[#d9effc] mb-[1px]">
+    <div className="w-full h-[65px] flex items-center bg-[#f1faff] mb-[1px]">
       <div className="w-[50px] ">
         <div className="w-[30px] h-[30px] ml-[10px]">
           <Star />
