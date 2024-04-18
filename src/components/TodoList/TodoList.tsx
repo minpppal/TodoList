@@ -4,7 +4,11 @@ import Todo from "./Todo";
 const TodoList = () => {
   // const [todos, setTodos] = useState
 
-  return <div></div>;
+  return (
+    <div>
+      <Todo></Todo>
+    </div>
+  );
 };
 
 export default TodoList;

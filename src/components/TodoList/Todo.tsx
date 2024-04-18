@@ -1,6 +1,8 @@
 "use client";
 import React from "react";
 import Star from "./Star";
+import { HiArrowRight } from "react-icons/hi2";
+
 const Todo = () => {
   return (
     <div className="w-full h-[65px] flex items-center bg-[#f1faff] mb-[1px]">
@@ -9,18 +11,13 @@ const Todo = () => {
           <Star />
         </div>
       </div>
-      <span className="w-[300px] h-[50px] text-black flex items-center">
-        제목 데이터 받아오기
+      <span className="flex-1 text-black overflow-hidden whitespace-nowrap overflow-ellipsis">
+        {/*{title} */} 제목 받아와지면
+        지워야함ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ
       </span>
-      <div className="form-control">
-        <label className="cursor-pointer label pl-[10px]">
-          <input
-            type="checkbox"
-            defaultChecked
-            className="checkbox checkbox-warning"
-          />
-        </label>
-      </div>
+      <button>
+        <HiArrowRight className="ml-[5px] mr-[8px] w-[30px] h-[30px]" />
+      </button>
     </div>
   );
 };
