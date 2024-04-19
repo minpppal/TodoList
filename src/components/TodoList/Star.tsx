@@ -11,7 +11,7 @@ const Star = () => {
 
   return (
     <button onClick={handleClick} className="h-[25px] w-[25px]">
-      <FaStar className="h-[25px] w-[25px]" color={starColor} />
+      <FaStar className="h-[25px] w-[25px] " color={starColor} />
     </button>
   );
 };

@@ -16,7 +16,10 @@ const Todo = () => {
         지워야함ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ
       </span>
       <button>
-        <HiArrowRight className="ml-[5px] mr-[8px] w-[30px] h-[30px]" />
+        <HiArrowRight
+          className="ml-[5px] mr-[8px] w-[30px] h-[30px]"
+          style={{ color: "black" }}
+        />
       </button>
     </div>
   );
