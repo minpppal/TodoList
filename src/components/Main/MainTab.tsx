@@ -4,9 +4,7 @@ import Todo from "@/components/TodoList/Todo";
 import Doing from "@/components/TodoList/Doing";
 import Done from "@/components/TodoList/Done";
 
-interface MainTabProps {}
-
-const MainTab: React.FC<MainTabProps> = () => {
+const MainTab = () => {
   const [activeTab, setActiveTab] = useState("todo");
 
   const handleTabClick = (tab: string) => {

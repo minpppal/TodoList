@@ -4,14 +4,18 @@ import { useState } from "react";
 import { FaStar } from "react-icons/fa";
 
 const Star = () => {
-  const [starColor, setYellowStar] = useState("#ffffff");
+  const [checkFavorite, setCheckFavorite] = useState(false);
   const handleClick = () => {
-    setYellowStar(starColor === "#ffffff" ? "#f4b800" : "#ffffff");
+    setCheckFavorite(!checkFavorite);
   };
 
   return (
-    <button onClick={handleClick} className="h-[25px] w-[25px]">
-      <FaStar className="h-[25px] w-[25px] " color={starColor} />
+    <button onClick={handleClick} className="h-[25px] w-[25px] outline-none">
+      {checkFavorite ? (
+        <FaStar className="h-[25px] w-[25px] text-[#F4B800]" />
+      ) : (
+        <FaStar className="h-[25px] w-[25px] text-[#e0e0e0]" />
+      )}
     </button>
   );
 };

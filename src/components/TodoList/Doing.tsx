@@ -15,10 +15,13 @@ const Doing = () => {
         {/*{title} */} 여기는 Doing~
       </span>
       <button>
-        <HiArrowRight
-          className="ml-[5px] mr-[8px] w-[30px] h-[30px]"
-          style={{ color: "black" }}
-        />
+        <div className="form-control pr-[10px]">
+          <input
+            type="checkbox"
+            defaultChecked
+            className="checkbox checkbox-info"
+          />
+        </div>
       </button>
     </div>
   );
