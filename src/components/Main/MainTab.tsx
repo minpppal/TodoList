@@ -1,8 +1,8 @@
 "use client";
 import React, { useState } from "react";
-import Todo from "@/components/TodoList/Todo";
-import Doing from "@/components/TodoList/Doing";
-import Done from "@/components/TodoList/Done";
+import TodoList from "@/components/TodoList/TodoList";
+import DoingList from "@/components/TodoList/DoingList";
+import DoneList from "@/components/TodoList/DoneList";
 
 const MainTab = () => {
   const [activeTab, setActiveTab] = useState("todo");
@@ -42,9 +42,9 @@ const MainTab = () => {
           Done
         </a>
       </div>
-      {activeTab === "todo" && <Todo />}
-      {activeTab === "doing" && <Doing />}
-      {activeTab === "done" && <Done />}
+      {activeTab === "todo" && <TodoList />}
+      {activeTab === "doing" && <DoingList />}
+      {activeTab === "done" && <DoneList />}
     </div>
   );
 };

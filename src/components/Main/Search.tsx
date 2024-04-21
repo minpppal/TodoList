@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { IoMdSearch } from "react-icons/io";
-const MainTitle = () => {
+const Search = () => {
   return (
     <div className="flex items-center justify-center w-full h-[107px] ">
       <div className="join">
@@ -23,4 +23,4 @@ const MainTitle = () => {
   );
 };
 
-export default MainTitle;
+export default Search;

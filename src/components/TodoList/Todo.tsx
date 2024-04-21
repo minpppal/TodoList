@@ -1,34 +1,15 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import Star from "./Star";
-import { HiArrowRight } from "react-icons/hi2";
+import { HiArrowRight } from "react-icons/hi";
 import { db } from "@/utils/api/firebase";
 import { collection, getDocs } from "firebase/firestore";
 
-const Todo = () => {
-  const [title, setTitle] = useState("");
-  const [hasData, setHasData] = useState(false);
+interface TodoProps {
+  title: string;
+}
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const querySnapshot = await getDocs(collection(db, "clients"));
-      if (!querySnapshot.empty) {
-        querySnapshot.forEach((doc) => {
-          console.log(doc.id, " => ", doc.data());
-          setTitle(doc.data().title);
-        });
-        setHasData(true);
-      } else {
-        setHasData(false);
-      }
-    };
-    fetchData();
-  }, []);
-
-  if (!hasData) {
-    return null;
-  }
-
+const Todo: React.FC<TodoProps> = ({ title }) => {
   return (
     <div className="w-full h-[65px] flex items-center bg-[#f1faff] mb-[1px]">
       <div className="w-[50px] ">
