@@ -4,7 +4,7 @@ import Link from "next/link";
 
 const GoWritePostBtn = () => {
   return (
-    <Link href="/writeTodo">
+    <Link href="/writePost">
       <div className="w-full h-[60px] flex justify-center items-center bg-[#f1faff]">
         <FaCirclePlus color="#87cefa" size="40" />
       </div>
