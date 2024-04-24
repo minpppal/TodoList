@@ -6,15 +6,24 @@ import { FiTrash2 } from "react-icons/fi";
 import DeleteModal from "./DeleteModal";
 import { db } from "@/utils/api/firebase";
 import { doc, deleteDoc } from "firebase/firestore";
+import { useTodoStore } from "@/store/useTodoStore";
+import { useRouter } from "next/navigation";
 
 interface TodoProps {
   id: string;
   title: string;
+  content: string;
   onDelete: (id: string) => void;
 }
 
-const Todo: React.FC<TodoProps> = ({ id, title, onDelete }) => {
+const Todo: React.FC<TodoProps> = ({ id, title, content, onDelete }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const router = useRouter();
+  const { setSelectedClient } = useTodoStore();
+  const handleSelect = () => {
+    setSelectedClient({ id, title, content });
+    return router.replace("/writePost");
+  };
 
   const handleDeleteClick = () => {
     setIsModalOpen(true);
@@ -32,7 +41,10 @@ const Todo: React.FC<TodoProps> = ({ id, title, onDelete }) => {
           <Star />
         </div>
       </div>
-      <span className="flex-1 text-black overflow-hidden whitespace-nowrap overflow-ellipsis">
+      <span
+        onClick={handleSelect}
+        className="flex-1 text-black overflow-hidden whitespace-nowrap overflow-ellipsis"
+      >
         {title}
       </span>
       <button onClick={handleDeleteClick}>

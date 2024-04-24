@@ -7,6 +7,7 @@ import Todo from "./Todo";
 interface Client {
   id: string;
   title: string;
+  content: string;
 }
 
 const TodoList = () => {
@@ -17,7 +18,11 @@ const TodoList = () => {
       const querySnapshot = await getDocs(collection(db, "clients"));
       const clientsArray: Client[] = [];
       querySnapshot.forEach((item) => {
-        clientsArray.push({ id: item.id, title: item.data().title });
+        clientsArray.push({
+          id: item.id,
+          title: item.data().title,
+          content: item.data().content,
+        });
       });
       setClients(clientsArray);
     };
@@ -36,6 +41,7 @@ const TodoList = () => {
           key={client.id}
           id={client.id}
           title={client.title}
+          content={client.content}
           onDelete={onDelete}
         />
       ))}
