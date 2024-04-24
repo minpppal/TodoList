@@ -13,7 +13,7 @@ interface TodoProps {
   id: string;
   title: string;
   content: string;
-  createdAt: Timestamp;
+  timestamp: Timestamp;
   onDelete: (id: string) => void;
 }
 
@@ -22,12 +22,12 @@ const Todo: React.FC<TodoProps> = ({
   title,
   content,
   onDelete,
-  createdAt,
+  timestamp,
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const router = useRouter();
   const { setSelectedClient } = useTodoStore();
-  const date = createdAt ? createdAt.toDate() : new Date();
+  const date = timestamp ? timestamp.toDate() : new Date();
   const formattedDate = date.toLocaleDateString("ko-KR", {
     year: "numeric",
     month: "long",
@@ -38,7 +38,6 @@ const Todo: React.FC<TodoProps> = ({
     setSelectedClient({ id, title, content });
     return router.replace("/writePost");
   };
-
   const handleDeleteClick = () => {
     setIsModalOpen(true);
   };
@@ -55,8 +54,11 @@ const Todo: React.FC<TodoProps> = ({
           <Star />
         </div>
       </div>
-      <div className="pt-[15px] w-[280px] flex-1 text-black overflow-hidden whitespace-nowrap overflow-ellipsis text-[20px]">
-        <span onClick={handleSelect}>{title}</span>
+      <div
+        onClick={handleSelect}
+        className="pt-[15px] w-[280px] flex-1 text-black overflow-hidden whitespace-nowrap overflow-ellipsis text-[20px]"
+      >
+        <span>{title}</span>
         <div className="w-[100px] h-[15px] text-black bg-[#f1faff] text-[8px]">
           {formattedDate}
         </div>

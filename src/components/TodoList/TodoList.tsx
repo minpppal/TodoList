@@ -1,14 +1,20 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { db } from "@/utils/api/firebase";
-import { collection, getDocs, Timestamp } from "firebase/firestore";
+import {
+  collection,
+  getDocs,
+  Timestamp,
+  orderBy,
+  query,
+} from "firebase/firestore";
 import Todo from "./Todo";
 
 interface Client {
   id: string;
   title: string;
   content: string;
-  createdAt: Timestamp;
+  timestamp: Timestamp;
 }
 
 const TodoList = () => {
@@ -16,15 +22,19 @@ const TodoList = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const querySnapshot = await getDocs(collection(db, "clients"));
+      // clients 컬렉션을 createdAt 필드 기준으로 오름차순 정렬
+      const querySnapshot = await getDocs(
+        query(collection(db, "clients"), orderBy("timestamp"))
+      );
       const clientsArray: Client[] = [];
       querySnapshot.forEach((item) => {
         clientsArray.push({
           id: item.id,
           title: item.data().title,
           content: item.data().content,
-          createdAt: item.data().createdAt,
+          timestamp: item.data().timestamp,
         });
+        console.log(clientsArray);
       });
       setClients(clientsArray);
     };
@@ -45,7 +55,7 @@ const TodoList = () => {
           title={client.title}
           content={client.content}
           onDelete={onDelete}
-          createdAt={client.createdAt}
+          timestamp={client.timestamp}
         />
       ))}
     </div>

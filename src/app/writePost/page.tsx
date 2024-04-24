@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import { collection, addDoc, doc, updateDoc, setDoc } from "firebase/firestore";
+import { collection, addDoc, doc, updateDoc } from "firebase/firestore";
 import { db } from "@/utils/api/firebase";
 import { useRouter } from "next/navigation";
 import { useTodoStore } from "@/store/useTodoStore";
@@ -45,13 +45,14 @@ const page = () => {
         await updateDoc(docRef, {
           title: title,
           content: content,
+          timestamp: new Date(),
         });
       } else {
         // 새 문서 추가
         await addDoc(collection(db, "clients"), {
           title: title,
           content: content,
-          createdAt: new Date(),
+          timestamp: new Date(),
         });
       }
       console.log("데이터가 성공적으로 추가");
