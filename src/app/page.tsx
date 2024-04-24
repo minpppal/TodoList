@@ -5,12 +5,10 @@ import GoWritePostBtn from "@/components/Main/GoWritePostBtn";
 
 export default function Home() {
   return (
-    <>
-      <div className="bg-white h-full">
-        <Search />
-        <MainTab />
-        <GoWritePostBtn />
-      </div>
-    </>
+    <div className="bg-white h-full">
+      <Search />
+      <MainTab />
+      <GoWritePostBtn />
+    </div>
   );
 }
