@@ -5,7 +5,7 @@ import { HiArrowRight } from "react-icons/hi";
 import { FiTrash2 } from "react-icons/fi";
 import DeleteModal from "./DeleteModal";
 import { db } from "@/utils/api/firebase";
-import { doc, deleteDoc } from "firebase/firestore";
+import { doc, deleteDoc, Timestamp } from "firebase/firestore";
 import { useTodoStore } from "@/store/useTodoStore";
 import { useRouter } from "next/navigation";
 
@@ -13,13 +13,27 @@ interface TodoProps {
   id: string;
   title: string;
   content: string;
+  createdAt: Timestamp;
   onDelete: (id: string) => void;
 }
 
-const Todo: React.FC<TodoProps> = ({ id, title, content, onDelete }) => {
+const Todo: React.FC<TodoProps> = ({
+  id,
+  title,
+  content,
+  onDelete,
+  createdAt,
+}) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const router = useRouter();
   const { setSelectedClient } = useTodoStore();
+  const date = createdAt ? createdAt.toDate() : new Date();
+  const formattedDate = date.toLocaleDateString("ko-KR", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+
   const handleSelect = () => {
     setSelectedClient({ id, title, content });
     return router.replace("/writePost");
@@ -37,16 +51,17 @@ const Todo: React.FC<TodoProps> = ({ id, title, content, onDelete }) => {
   return (
     <div className="w-full h-[65px] flex items-center justify-center bg-[#f1faff] mb-[1px]">
       <div className="w-[50px] ">
-        <div className="w-[30px] h-[30px] ml-[10px]">
+        <div className="w-[30px] h-[30px] ml-[10px] mr-1">
           <Star />
         </div>
       </div>
-      <span
-        onClick={handleSelect}
-        className="flex-1 text-black overflow-hidden whitespace-nowrap overflow-ellipsis"
-      >
-        {title}
-      </span>
+      <div className="pt-[15px] w-[280px] flex-1 text-black overflow-hidden whitespace-nowrap overflow-ellipsis text-[20px]">
+        <span onClick={handleSelect}>{title}</span>
+        <div className="w-[100px] h-[15px] text-black bg-[#f1faff] text-[8px]">
+          {formattedDate}
+        </div>
+      </div>
+
       <button onClick={handleDeleteClick}>
         <FiTrash2 className="w-[30px] h-[30px] text-[#75c8ff]" />
       </button>

@@ -1,13 +1,14 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { db } from "@/utils/api/firebase";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, Timestamp } from "firebase/firestore";
 import Todo from "./Todo";
 
 interface Client {
   id: string;
   title: string;
   content: string;
+  createdAt: Timestamp;
 }
 
 const TodoList = () => {
@@ -22,6 +23,7 @@ const TodoList = () => {
           id: item.id,
           title: item.data().title,
           content: item.data().content,
+          createdAt: item.data().createdAt,
         });
       });
       setClients(clientsArray);
@@ -43,6 +45,7 @@ const TodoList = () => {
           title={client.title}
           content={client.content}
           onDelete={onDelete}
+          createdAt={client.createdAt}
         />
       ))}
     </div>

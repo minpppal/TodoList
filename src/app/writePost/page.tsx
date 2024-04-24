@@ -20,8 +20,8 @@ const page = () => {
       setTitle(selectedClient.title);
       setContent(selectedClient.content);
       setDocId(selectedClient.id); // docId 상태를 설정
-      console.log("불러온 제목:", selectedClient.title);
-      console.log("내용", selectedClient.content);
+      // console.log("불러온 제목:", selectedClient.title); 데이터 확인용
+      // console.log("내용", selectedClient.content);
     } else {
       setTitle("");
       setContent("");
@@ -51,6 +51,7 @@ const page = () => {
         await addDoc(collection(db, "clients"), {
           title: title,
           content: content,
+          createdAt: new Date(),
         });
       }
       console.log("데이터가 성공적으로 추가");
