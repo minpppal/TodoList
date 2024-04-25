@@ -3,7 +3,7 @@ import { checkStarTypes } from "@/types/checkStarTypes";
 
 export const useCheckStarStore = create<checkStarTypes>((set) => ({
   checkStar: {},
-  toggleCheckStar: (id) =>
+  setCheckStar: (id) =>
     set((state) => ({
       checkStar: {
         ...state.checkStar,

@@ -8,6 +8,7 @@ import { db } from "@/utils/api/firebase";
 import { doc, deleteDoc, Timestamp } from "firebase/firestore";
 import { useTodoStore } from "@/store/useTodoStore";
 import { useRouter } from "next/navigation";
+import { useCheckStarStore } from "@/store/useCheckStarStore";
 
 interface TodoProps {
   id: string;
@@ -33,7 +34,11 @@ const Todo: React.FC<TodoProps> = ({
     month: "long",
     day: "numeric",
   });
+  const { setCheckStar } = useCheckStarStore();
 
+  const handleStarClick = () => {
+    setCheckStar(id);
+  };
   const handleSelect = () => {
     setSelectedClient({ id, title, content });
     return router.replace("/writePost");
@@ -50,7 +55,10 @@ const Todo: React.FC<TodoProps> = ({
   return (
     <div className="w-full h-[65px] flex items-center justify-center bg-[#f1faff] mb-[1px]">
       <div className="w-[50px] ">
-        <div className="w-[30px] h-[30px] ml-[10px] mr-1">
+        <div
+          onClick={handleStarClick}
+          className="w-[30px] h-[30px] ml-[10px] mr-1"
+        >
           <Star />
         </div>
       </div>
