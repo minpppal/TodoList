@@ -7,8 +7,6 @@ import {
   Timestamp,
   orderBy,
   query,
-  doc,
-  updateDoc,
 } from "firebase/firestore";
 import Todo from "./Todo";
 import { useCheckStarStore } from "@/store/useCheckStarStore";
