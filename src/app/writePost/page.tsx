@@ -6,7 +6,7 @@ import { db } from "@/utils/api/firebase";
 import { useRouter } from "next/navigation";
 import { useTodoStore } from "@/store/useTodoStore";
 
-const page = () => {
+const Page = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [docId, setDocId] = useState("");
@@ -100,4 +100,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
